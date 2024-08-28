@@ -22,7 +22,7 @@ export const {
       if(token.sub && session.user){
         session.user.id=token.sub
         const existuser= await prisma.user.findUnique({where:{id:session.user.id}})
-        session.user.banned=existuser?.banned
+        // session.user.banned=existuser?.banned
       }
       return session;
     },
