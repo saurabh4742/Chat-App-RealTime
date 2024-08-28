@@ -28,7 +28,7 @@ export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
 
   useEffect(() => {
     if (user?.id) {
-      const newSocket = io('http://localhost:3001', { autoConnect: false });
+      const newSocket = io('https://chat-app-realtime-socketserver.onrender.com', { autoConnect: false });
       setSocket(newSocket);
       newSocket.connect();
       newSocket.emit("my_joining", user)

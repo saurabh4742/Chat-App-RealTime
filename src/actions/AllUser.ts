@@ -1,9 +1,12 @@
 "use server"
 
+import { redirect } from "next/navigation";
 import { auth } from "../../auth";
 import { prisma } from "../../utils/prisma";
-
-const getAllUser = async () => {
+export const Redirect =(pass:string)=>{
+    return redirect(pass)
+}
+export const getAllUser = async () => {
     try {
         const session = await auth();
         if (!session || !session.user) {
@@ -19,6 +22,7 @@ const getAllUser = async () => {
                     not: currentUserId,
                 },
             },
+            select:{id:true,image:true,name:true}
         });
 
         return users;
@@ -28,4 +32,3 @@ const getAllUser = async () => {
     }
 };
 
-export default getAllUser;
