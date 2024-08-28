@@ -5,6 +5,7 @@ import { auth } from "../../auth";
 const inter = Inter({ subsets: ["latin"] });
 import { SessionProvider } from "next-auth/react";
 import { SocketProvider } from "@/components/SocketContex";
+import {Toaster} from 'react-hot-toast';
 export const metadata: Metadata = {
   title: "Chat-With-SSR",
   description: "Realtime-Web-App",
@@ -21,6 +22,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <SessionProvider session={session}>
           <SocketProvider>
+            <Toaster/>
           {children}
           </SocketProvider>
         </SessionProvider>
