@@ -120,7 +120,7 @@ const MainChat = () => {
             className={`flex ${msg.senderId === session.data?.user?.id ? "justify-end" : "justify-start"} items-center mb-2`}
           >
             <div
-              className={`sm:w-3/12 w-5/12 rounded-lg p-4 ${msg.senderId === session.data?.user?.id ? "bg-[#0C0A09] text-[#F5F5F4]" : "bg-[#F5F5F4]"}`}
+              className={`sm:w-3/12 w-6/12 rounded-lg p-4 ${msg.senderId === session.data?.user?.id ? "bg-[#0C0A09] text-[#F5F5F4]" : "bg-[#F5F5F4]"}`}
             >
               <p>{msg.message}</p>
               <p className="text-xs text-gray-500 mt-1">{formatTimestamp(msg.sentAt)}</p>
@@ -135,7 +135,7 @@ const MainChat = () => {
             className={`flex ${msg.senderId === session.data?.user?.id ? "justify-end" : "justify-start"} items-center mb-2`}
           >
             <div
-              className={`w-3/12 rounded-lg p-4 ${msg.senderId === session.data?.user?.id ? "bg-[#0C0A09] text-[#F5F5F4]" : "bg-[#F5F5F4]"}`}
+              className={`sm:w-3/12 w-6/12 rounded-lg p-4 ${msg.senderId === session.data?.user?.id ? "bg-[#0C0A09] text-[#F5F5F4]" : "bg-[#F5F5F4]"}`}
             >
               <p>{msg.message}</p>
               <p className="text-xs text-gray-500 mt-1">{formatTimestamp(msg.sentAt)}</p>
