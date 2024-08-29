@@ -7,7 +7,7 @@ export default function Home() {
   const session=useSession()
   return (
     <main className="flex min-h-screen flex-col items-center justify-start ">
-      <div className="w-full flex justify-between p-2 bg-[#FAFAF9] "><div className="font-bold ">Chat-With-SSR</div>{session.data?.user.id && <button className=" bg-black text-white shadow-lg rounded-md p-3" onClick={()=>{
+      <div className="w-full flex justify-between p-2 bg-[#FAFAF9] items-center "><div className="font-bold ">Chat-With-SSR</div>{session.data?.user.id && <button className=" bg-black text-white shadow-lg rounded-md p-3" onClick={()=>{
         signOut()
       }}>Logout</button>}{!session.data?.user.id && <form action={()=>{
         redirect("/auth/login")

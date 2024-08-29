@@ -6,6 +6,7 @@ import {
   apiPrefix,
   DEFAULT_LOGIN_REDIRECT,
   publicRoutes,
+  loginRoute
 } from "../route";
 
 export default auth((req) => {
@@ -14,6 +15,10 @@ export default auth((req) => {
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiPrefix);
   const isAuthRoute = authRoute.includes(nextUrl.pathname);
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
+  const isLoginRoute=loginRoute.includes(nextUrl.pathname);
+  if(isloggedin && isLoginRoute){
+    return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
+  }
   if(isApiAuthRoute){
     return 
   }
