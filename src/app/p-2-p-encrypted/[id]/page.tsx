@@ -97,7 +97,7 @@ const MainChat = () => {
       }
     };
   }, [id, session?.data?.user?.id, socket]);
-  if(!socket){
+  if(!socket?.connected){
     return <Loader/>
   }
   return (
