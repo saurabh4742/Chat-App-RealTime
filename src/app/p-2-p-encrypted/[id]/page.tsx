@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { EmojiPicker } from "@/components/EmojiPicker";
 import { useSocket } from "@/components/SocketContex";
 import { useParams } from "next/navigation";
+import { Loader } from "@/components/Loading";
 
 interface MessageData {
   id: string;
@@ -26,7 +27,7 @@ const MainChat = () => {
   const [messages, setMessages] = useState<MessageData[]>([]);
   const [newMessage, setNewMessage] = useState("");
   const [onlineStatus, setOnlineStatus] = useState(false);
-  const [oldmessages, setOldMessages] = useState<MessageData[]>([]);
+  const [oldMessages, setOldMessages] = useState<MessageData[]>([]);
   const [username, setUsername] = useState("");
   const [imageUrl, setImageurl] = useState("");
 
@@ -66,11 +67,12 @@ const MainChat = () => {
 
       socket.on("Giving_old_chats", (data: MessageData[]) => {
         setOldMessages(data);
+        setTimeout(scrollToLastMessage, 100); // Scroll to the last old message after they are set
       });
 
       socket.on("receive_msg", (data: MessageData) => {
         setMessages((prevMessages) => [...prevMessages, data]);
-        scrollToLastMessage();
+        scrollToLastMessage(); // Scroll to the new message when it's added
       });
 
       socket.emit("Give_Me_old_chats");
@@ -95,7 +97,9 @@ const MainChat = () => {
       }
     };
   }, [id, session?.data?.user?.id, socket]);
-
+  if(!socket){
+    return <Loader/>
+  }
   return (
     <div className="w-full min-h-screen sm:flex sm:flex-col">
       <div className="w-full min-h-[10vh] bg-[#E7E5E4]">
@@ -114,9 +118,10 @@ const MainChat = () => {
       </div>
       <div className="h-[75vh] w-full flex flex-col p-4 overflow-y-scroll">
         {/* Map through old messages */}
-        {oldmessages.map((msg) => (
+        {oldMessages.map((msg) => (
           <div
             key={msg.id}
+            ref={lastMessageRef}
             className={`flex ${msg.senderId === session.data?.user?.id ? "justify-end" : "justify-start"} items-center mb-2`}
           >
             <div
