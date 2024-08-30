@@ -15,7 +15,7 @@ export default function Home() {
         <button type="submit" className="w-full bg-black text-white shadow-lg rounded-md p-3" >Try now!</button></form>}</div>
       {!session.data?.user.id && <div className="flex flex-col justify-center text-center w-full items-center h-[80vh]">
       <div className="font-semibold text-amber-950">Chat today, memories forever</div>
-      <Lock className="text-muted-foreground text-[#083344] w-40 h-40"/>
+      <Lock className="text-muted-foreground  w-40 h-40" color="#083344"/>
       <p className="text-muted-foreground text-lg"> The service is locked please login first.</p>
       </div>}
       {session.data?.user.id && <>
